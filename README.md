@@ -61,8 +61,7 @@ It's not about being pretty. It's about being **BOLD**.
 > Real-time data visualization of development activity.
 > - **Dual-Profile Interface**: Side-by-side GitHub and LeetCode stats.
 > - **Live GitHub API**: Dynamic fetching of Repos, Followers, and Commits.
-> - **LeetCard Integration**: Real-time LeetCode problem-solving heatmap.
-> - **Parallel Layout**: Perfectly balanced columns with mirrored headers and activity matrices.
+
 
 ---
 
