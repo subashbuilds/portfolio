@@ -1046,20 +1046,26 @@
                     </div>
                 </div>
 
-                <form class="space-y-6 bg-gray-50 p-6 border-2 border-black">
+                <form id="contact-form" class="space-y-6 bg-gray-50 p-6 border-2 border-black">
                     <div class="flex flex-col">
                         <label class="font-mono font-bold mb-1 uppercase text-xs">Identity</label>
-                        <input type="text" placeholder="NAME / COMPANY"
+                        <input type="text"
+                  name="name"   
+                  placeholder="NAME / COMPANY"
                             class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover">
                     </div>
                     <div class="flex flex-col">
                         <label class="font-mono font-bold mb-1 uppercase text-xs">Coordinates</label>
-                        <input type="email" placeholder="EMAIL ADDRESS"
+                        <input type="email"
+                  name="email"    
+                  placeholder="EMAIL ADDRESS"
                             class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover">
                     </div>
                     <div class="flex flex-col">
                         <label class="font-mono font-bold mb-1 uppercase text-xs">Transmission</label>
-                        <textarea rows="4" placeholder="PROJECT DETAILS..."
+                        <textarea rows="4"
+                  name="message"     
+                  placeholder="PROJECT DETAILS..."
                             class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all resize-none cursor-hover"></textarea>
                     </div>
                     <button type="submit"
@@ -1229,6 +1235,40 @@
             document.getElementById("progressBar").style.width = scrolled + "%";
         };
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+    (function(){
+    emailjs.init("t0eOncD8mxb8xSHBN");
+    })();
+</script>
+    <script>
+
+document
+.getElementById("contact-form")
+.addEventListener("submit", function(event){
+
+event.preventDefault();
+
+emailjs.sendForm(
+"service_mmfp109",
+"template_0cdueq9",
+this
+)
+
+.then(function(){
+
+alert("Message sent successfully!");
+
+}, function(error){
+
+alert("Failed to send message");
+
+});
+
+});
+
+</script>
 </body>
 
 
