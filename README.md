@@ -80,7 +80,7 @@ It's not about being pretty. It's about being **BOLD**.
 
 **TRANSMISSION OPEN:**
 - **MAIL**: `subashkrishnan2212@gmail.com`
-- **GITHUB**: `Subashkrishnan2212`
+- **GITHUB**: `Subashbuilds`
 - **LOCATION**: `Remote / Earth`
 
 > "I build digital products that refuse to be boring."
