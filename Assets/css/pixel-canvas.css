@@ -1,0 +1,22 @@
+/* Copyright (c) 2024 by Ryan Mulligan (https://codepen.io/hexagoncircle/pen/KwPpdBZ) */
+
+
+  .group{
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+pixel-canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;   /* ← Add this */
+}
+
+.group > *:not(pixel-canvas){
+    position:relative;
+    z-index:2;
+}
