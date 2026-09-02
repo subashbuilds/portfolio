@@ -231,6 +231,91 @@
 
 <body class="text-neo-black font-display antialiased selection:bg-neo-black selection:text-neo-yellow">
    
+  <!-- =====================================================================
+     SPLASH SCREEN — paste this whole block immediately after <body ...>
+     Everything below is inline-styled on purpose: it cannot be broken
+     by Tailwind's reset, a missing CSS file, or a wrong file path.
+     The only external dependency is the GSAP script tag at the bottom.
+     ===================================================================== -->
+<div id="splash-screen" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:999999;overflow:hidden;">
+
+  <!-- PHASE 1: plain PNG logo, stays untouched/unchanged until the animation starts overlapping it.
+       Uses <picture> to serve a different image on desktop vs mobile — swap the two file paths
+       below for your actual filenames. The breakpoint (769px) is the usual mobile/desktop split;
+       change min-width if you want it to switch at a different screen size. -->
+  <div id="splash-logo-wrap" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;display:flex;align-items:center;justify-content:center;background-color:#e3e3db;">
+    <picture>
+      <source media="(min-width: 769px)" srcset="Assets/images/splash-desktop.png">
+      <img id="splash-logo" src="Assets/images/splash-mobile.png" alt="Subash Krishnan"
+           style="width:100%;height:100%;object-fit:cover;display:block;opacity:0;">
+    </picture>
+  </div>
+
+  <!-- PHASE 2: Nvg8 stroke-reveal animation — transparent container so the
+       colored shapes visually draw straight over the still-visible logo,
+       and later reveal the real portfolio as they wipe away, with no
+       separate color backdrop or fade step at any point. -->
+  <section id="splash-intro" style="display:none;position:relative;width:100%;height:100%;overflow:hidden;z-index:3;">
+
+    <div class="splash-svg-container" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300%;height:calc(100% - 7.5px);display:flex;flex-direction:column;justify-content:center;align-items:center;">
+
+      <div class="splash-svg-row" style="position:relative;flex:1;width:100%;height:100%;">
+        <svg id="splash-svg-top-1" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#FF6D38" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+        <svg id="splash-svg-top-2" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#C6FE69" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+        <svg id="splash-svg-top-3" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#7A78FF" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="splash-svg-row" style="position:relative;flex:1;width:100%;height:100%;">
+        <svg id="splash-svg-middle-1" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#7A78FF" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+        <svg id="splash-svg-middle-2" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#B9DDFD" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+        <svg id="splash-svg-middle-3" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#C6FE69" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="splash-svg-row" style="position:relative;flex:1;width:100%;height:100%;">
+        <svg id="splash-svg-bottom-1" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#FFC412" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+        <svg id="splash-svg-bottom-2" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#FF6D38" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+        <svg id="splash-svg-bottom-3" width="3360" height="360" viewBox="0 0 3360 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;overflow:visible;">
+          <path d="M180 180H3180" stroke="#B9DDFD" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+      </div>
+
+    </div>
+
+    <div class="splash-svg-container-2" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300%;height:calc(100% - 7.5px);display:flex;flex-direction:column;justify-content:center;align-items:center;">
+      <div class="splash-svg-row" style="position:relative;flex:1;width:100%;height:100%;"></div>
+
+      <div class="splash-svg-row" style="position:relative;flex:1;width:100%;height:100%;">
+        <svg id="splash-svg-curve-1" width="2248" height="1112" viewBox="0 0 2248 1112" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0%;left:40%;height:310%;object-fit:contain;transform:translate(-50%,-1%);">
+          <path d="M180 180.538C1512.01 180.54 1718.64 133.099 2067.5 931.594" stroke="#ffc412" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+        <svg id="splash-svg-curve-2" width="2248" height="1112" viewBox="0 0 2248 1112" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0%;left:40%;height:310%;object-fit:contain;transform:translate(-50%,-1%);">
+          <path d="M180 180.538C1512.01 180.54 1718.64 133.099 2067.5 931.594" stroke="#FF6D38" stroke-width="360" stroke-miterlimit="3.8637" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="splash-svg-row" style="position:relative;flex:1;width:100%;height:100%;"></div>
+    </div>
+
+  </section>
+</div>
+<!-- ============ SPLASH SCREEN MARKUP — END ============ -->
+
 
     <div id="cursor" class="w-6 h-6 bg-white rounded-full border-2 border-black hidden lg:block"></div>
 
@@ -1412,6 +1497,168 @@ alert("Failed to send message");
 
 <script src="/Assets/js/shape-wave.js"></script>
 <script src="/Assets/js/pixel-canvas.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<!-- =====================================================================
+     SPLASH SCREEN SCRIPT — paste this immediately before </body>,
+     AFTER the GSAP script tag:
+
+     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+     ===================================================================== -->
+<script>
+(function () {
+  "use strict";
+
+  var LOGO_DURATION = 2500;          // ms the PNG logo shows before the animation starts overlapping it
+  var ANIMATION_DURATION = 3000;     // ms the shape animation takes to play
+  var LOGO_REMOVE_AT_PROGRESS = 0.4; // hide the logo instantly once the animation reaches this much progress
+  var LOGO_FADE_IN_DURATION = 500;   // ms for the logo image to fade in on load
+
+  document.addEventListener("DOMContentLoaded", init);
+
+  function init() {
+    var splash = document.getElementById("splash-screen");
+    if (!splash) return;
+
+    var logoWrap = document.getElementById("splash-logo-wrap");
+    var logoImg = document.getElementById("splash-logo");
+    var introSection = document.getElementById("splash-intro");
+    var logoRemoved = false;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
+    // Fade the logo in from the markup's opacity:0 starting state. The
+    // double rAF forces the browser to paint that initial state first,
+    // so the transition to opacity:1 actually animates instead of
+    // jumping straight there.
+    logoImg.style.transition = "opacity " + LOGO_FADE_IN_DURATION + "ms ease";
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        logoImg.style.opacity = "1";
+      });
+    });
+
+    // Widen the rows on small screens (same responsive behavior as the
+    // original scroll animation), done in JS since there's no stylesheet.
+    if (window.innerWidth <= 1000) {
+      introSection.querySelectorAll(".splash-svg-container, .splash-svg-container-2").forEach(function (el) {
+        el.style.width = "1000%";
+      });
+    }
+
+    // Safety net: never leave the site hidden behind the splash if
+    // something goes wrong (e.g. GSAP fails to load).
+    var safetyTimer = setTimeout(finishSplash, 12000);
+
+    setTimeout(showAnimation, LOGO_DURATION);
+
+    function showAnimation() {
+      // The logo is left completely untouched here — no fade, no display
+      // change. The animation simply starts on top of it (it sits at a
+      // higher z-index) so the shapes visually draw over the still-visible
+      // logo, exactly like the reference clip.
+      introSection.style.display = "block";
+
+      if (typeof gsap === "undefined") {
+        finishSplash();
+        return;
+      }
+
+      prepareStrokePaths();
+
+      var tl = buildTimeline();
+      var naturalDuration = tl.duration() || 1;
+      tl.timeScale(naturalDuration / (ANIMATION_DURATION / 1000));
+
+      tl.eventCallback("onUpdate", function () {
+        if (!logoRemoved && tl.progress() >= LOGO_REMOVE_AT_PROGRESS) {
+          logoRemoved = true;
+          logoWrap.style.display = "none"; // instant removal, no transition
+        }
+      });
+      tl.eventCallback("onComplete", finishSplash);
+      tl.play(0);
+    }
+
+    function prepareStrokePaths() {
+      introSection.querySelectorAll(".splash-svg-row svg path").forEach(function (originalPath) {
+        var borderPath = originalPath.cloneNode(true);
+        var originalWidth = parseInt(originalPath.getAttribute("stroke-width"), 10);
+        borderPath.setAttribute("stroke", "#0f0f0f");
+        borderPath.setAttribute("stroke-width", originalWidth + 10);
+        originalPath.parentElement.insertBefore(borderPath, originalPath);
+      });
+
+      introSection.querySelectorAll(".splash-svg-container-2 svg").forEach(function (svg) {
+        var viewBox = svg.getAttribute("viewBox");
+        if (!viewBox) return;
+        var parts = viewBox.split(" ").map(Number);
+        svg.setAttribute(
+          "viewBox",
+          parts[0] + " " + (parts[1] - 10) + " " + parts[2] + " " + (parts[3] + 20)
+        );
+      });
+
+      introSection.querySelectorAll(".splash-svg-row svg path").forEach(function (path) {
+        var len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+      });
+    }
+
+    function buildTimeline() {
+      var tl = gsap.timeline({ paused: true });
+
+      var strokeRevealOrder = [
+        "splash-svg-top-1", "splash-svg-bottom-1", "splash-svg-middle-1",
+        "splash-svg-top-2", "splash-svg-bottom-2", "splash-svg-middle-2",
+        "splash-svg-top-3", "splash-svg-middle-3", "splash-svg-bottom-3",
+      ];
+
+      strokeRevealOrder.forEach(function (id, index) {
+        var paths = introSection.querySelectorAll("#" + id + " path");
+        tl.to(paths, { strokeDashoffset: 0, duration: 1.5, ease: "power2.out" }, index * 0.3);
+      });
+
+      var curveStrokeOrder = ["splash-svg-curve-1", "splash-svg-curve-2"];
+      var curveStartTime = 5 * 0.3 + 0.3;
+
+      curveStrokeOrder.forEach(function (id, index) {
+        var paths = introSection.querySelectorAll("#" + id + " path");
+        if (!paths.length) return;
+        var pathLength = paths[0].getTotalLength();
+        var curveStartAt = curveStartTime + index * 1;
+
+        tl.to(paths, { strokeDashoffset: 0, duration: 1, ease: "power2.out" }, curveStartAt);
+        tl.to(paths, { strokeDashoffset: -pathLength, duration: 1.5, ease: "power2.inOut" }, curveStartAt + 1);
+      });
+
+      var svgRows = introSection.querySelectorAll(".splash-svg-container .splash-svg-row");
+      tl.to(svgRows, { xPercent: 100, duration: 2, ease: "power3.inOut", stagger: 0.15 }, ">-0.5");
+
+      // No background color set anywhere in the markup — as each bar wipes
+      // away it reveals the real portfolio directly underneath, not a
+      // solid color panel.
+      return tl;
+    }
+
+    function finishSplash() {
+      clearTimeout(safetyTimer);
+      if (!splash || splash.dataset.done === "1") return;
+      splash.dataset.done = "1";
+
+      // Instant removal — no fade, no delay. The animation's own wipe
+      // has already revealed the portfolio, so this just cleans up
+      // the now-empty overlay immediately.
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      if (splash.parentNode) splash.parentNode.removeChild(splash);
+    }
+  }
+})();
+</script>
+
 
 </body>
 
