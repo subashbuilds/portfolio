@@ -231,7 +231,7 @@
 
 <body class="text-neo-black font-display antialiased selection:bg-neo-black selection:text-neo-yellow">
    
-  <!-- =====================================================================
+<!-- =====================================================================
      SPLASH SCREEN — paste this whole block immediately after <body ...>
      Everything below is inline-styled on purpose: it cannot be broken
      by Tailwind's reset, a missing CSS file, or a wrong file path.
@@ -242,12 +242,14 @@
   <!-- PHASE 1: plain PNG logo, stays untouched/unchanged until the animation starts overlapping it.
        Uses <picture> to serve a different image on desktop vs mobile — swap the two file paths
        below for your actual filenames. The breakpoint (769px) is the usual mobile/desktop split;
-       change min-width if you want it to switch at a different screen size. -->
-  <div id="splash-logo-wrap" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;display:flex;align-items:center;justify-content:center;background-color:#e3e3db;">
+       change min-width if you want it to switch at a different screen size.
+       The <img> is positioned absolutely so it fills the wrap's box directly — needed for
+       object-fit:cover to work; a flex-centered parent won't give it a definite size to cover. -->
+  <div id="splash-logo-wrap" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;overflow:hidden;background-color:#e3e3db;">
     <picture>
       <source media="(min-width: 769px)" srcset="Assets/images/splash-desktop.png">
       <img id="splash-logo" src="Assets/images/splash-mobile.png" alt="Subash Krishnan"
-           style="width:100%;height:100%;object-fit:cover;display:block;opacity:0;">
+           style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;">
     </picture>
   </div>
 
