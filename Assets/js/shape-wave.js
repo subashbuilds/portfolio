@@ -244,12 +244,22 @@ function tick() {
 }
 
 function onMove(e) {
-  pointer = { x: e.clientX, y: e.clientY };
+  const rect = canvas.getBoundingClientRect();
+
+  pointer = {
+    x: e.clientX - rect.left, 
+    y: e.clientY - rect.top
+  };
   activity = 1;
 }
 
 function onClick(e) {
-  triggerWave(e.clientX, e.clientY);
+  const rect = canvas.getBoundingClientRect();
+
+  triggerWave(
+    e.clientX - rect.left,
+    e.clientY - rect.top
+  );
 }
 
 function triggerWave(x, y) {
